@@ -1,18 +1,84 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="home flex w-full min-h-100vh">
+    <div class="left">
+      <Sidebar :data="data" />
+    </div>
+    <div class="right w-full flex bg-light-600 justify-center items-center">
+      <div>
+        <img alt="Vue logo" src="../assets/logo.png">
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script lang="ts" setup>
+import Sidebar, { ISidebar } from '@/components/Sidebar.vue'; // @ is an alias to /src
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class HomeView extends Vue {}
+// 可选 Font-Awesome v4 图标：https://fontawesome.com/v4/icons/
+
+const data: ISidebar = {
+  items: [
+    {
+      text: '概览',
+      icon: 'dashboard',
+      link: { path: '/dashboard' },
+    },
+    {
+      text: '产品',
+      icon: 'send',
+      link: { path: '/dashboard' },
+      children: [
+        {
+          text: '产品1',
+          icon: 'send',
+          link: { path: '/dashboard' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/dashboard' },
+        },
+      ]
+    },
+    {
+      text: '云',
+      icon: 'cloud',
+      link: { path: '/dashboard' },
+          children: [
+            {
+              text: '云里雾里',
+              icon: 'home',
+              link: { path: '/dashboard' },
+            },
+            {
+              text: '云',
+              icon: 'gear',
+              link: { path: '/dashboard' },
+            },
+          ]
+    },
+    {
+      text: '数据',
+      icon: 'briefcase',
+      link: { path: '/dashboard' },
+    },
+    {
+      text: '服务',
+      icon: 'life-ring',
+      link: { path: '/dashboard' },
+    },
+  ],
+  footer: [
+    {
+      text: '账户',
+      icon: 'user',
+      link: { path: '/dashboard' },
+    },
+    {
+      text: '设置',
+      icon: 'cog',
+      link: { path: '/dashboard' },
+    },
+  ],
+};
 </script>
