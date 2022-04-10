@@ -26,58 +26,58 @@ const data: ISidebar = {
     {
       text: '产品',
       icon: 'send',
-      link: { path: '/dashboard' },
+      link: { path: '/products' },
       children: [
         {
           text: '产品1',
           icon: 'send',
-          link: { path: '/dashboard' },
+          link: { path: '/products/overview' },
         },
         {
           text: '产品2',
           icon: 'cloud',
-          link: { path: '/dashboard' },
+          link: { path: '/products/details' },
         },
       ]
     },
     {
       text: '云',
       icon: 'cloud',
-      link: { path: '/dashboard' },
+      link: { path: '/cloud' },
           children: [
             {
               text: '云里雾里',
               icon: 'home',
-              link: { path: '/dashboard' },
+              link: { path: '/cloud/status' },
             },
             {
               text: '云',
               icon: 'gear',
-              link: { path: '/dashboard' },
+              link: { path: '/cloud/detail' },
             },
           ]
     },
     {
       text: '数据',
       icon: 'briefcase',
-      link: { path: '/dashboard' },
+      link: { path: '/insight' },
     },
     {
       text: '服务',
       icon: 'life-ring',
-      link: { path: '/dashboard' },
+      link: { path: '/services' },
     },
   ],
   footer: [
     {
       text: '账户',
       icon: 'user',
-      link: { path: '/dashboard' },
+      link: { path: '/profile' },
     },
     {
       text: '设置',
       icon: 'cog',
-      link: { path: '/dashboard' },
+      link: { path: '/settings' },
     },
   ],
 };

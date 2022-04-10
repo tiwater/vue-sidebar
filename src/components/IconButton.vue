@@ -1,11 +1,12 @@
 <template>
   <div 
+    :class="selectedClass(selected)"
     class="icon-button w-full flex flex-col items-center p-2 hover:(cursor-pointer bg-light-500)" 
     @mouseenter="onMouseEnter(data)" 
     @mouseleave="onMouseLeave(data)"
     @click="onClick(data)"
   >
-    <i :class="iconClass(data.icon) + selectedClass(selected)" class="m-2" />
+    <i :class="iconClass(data.icon)" class="m-2" />
     <div class="icon-text text-sm">{{ data.text }}</div>
   </div>
 </template>
@@ -23,14 +24,13 @@ defineProps<IProps>();
 // 为方便起见，这版实现只支持 FontAwesome v4 图标集
 // 可选图标：https://fontawesome.com/v4/icons/
 const iconClass = (icon: string) => `fa fa-${icon}`;
-const selectedClass = (selected: boolean | undefined) => (selected) ? 'shadow-inner' : '';
+const selectedClass = (selected: boolean | undefined) => (selected) ? 'selected bg-light-800 shadow-inner' : '';
 
 // 向 Index.vue 传递鼠标悬浮和选择结果
 
 const hoverItem = inject('hover-item') as Function;
 
 const onMouseEnter = (data: ISidebarItem) => {
-  console.log('IconButton.onMouseEnter', data.text);
   if (hoverItem) {
     hoverItem(data);
   }
@@ -39,7 +39,6 @@ const onMouseEnter = (data: ISidebarItem) => {
 const leaveItem = inject('leave-item') as Function;
 
 const onMouseLeave = (data: ISidebarItem) => {
-  console.log('IconButton.onMouseLeave', data.text);
   if (leaveItem) {
     leaveItem(data);
   }
@@ -60,7 +59,7 @@ const onClick = (data: ISidebarItem) => {
   color: darkgray;
 }
 
-.icon-button:hover {
+.icon-button:hover, .selected {
   &>.fa, &>.icon-text {
     color: rgb(10,10,10);
   }

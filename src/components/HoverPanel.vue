@@ -27,13 +27,11 @@ let timer: ReturnType<typeof setTimeout> = 0;
 const status = ref('hovered'); 
 
 const onMouseEnter = () => {
-  console.log('HoverPanel.onMouseEnter', timer);
   clearTimeout(timer); // 有可能还有定时器在运行，需要清理。
   status.value = 'hovered';
 };
 
 const onMouseLeave = () => {
-  console.log('HoverPanel.onMouseLeave');
   // 延迟关闭
   clearTimeout(timer);
   status.value = 'hiding';

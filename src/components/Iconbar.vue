@@ -6,7 +6,7 @@
   </div>
   <div class="flex flex-col">
     <!-- 只有此区域图标会有选中状态 -->
-    <IconButton v-for="(item, i) in data.items" :key="i" :selected="selectedItem && selectedItem.link === item.link" :data="item" />
+    <IconButton v-for="(item, i) in data.items" :key="i" :selected="isSelected(selectedItem, item)" :data="item" />
   </div>
   <div v-if="data.footer" class="flex flex-col">
     <IconButton v-for="(item, i) in data.footer" :key="i" :data="item" />
@@ -23,4 +23,16 @@ interface IProps {
 }
 
 defineProps<IProps>();
+
+const isSelected = (selectedItem: ISidebarItem | undefined, currentItem: ISidebarItem) => {
+  if (!selectedItem) {
+    return false;
+  }
+  // 使用简易方法比较两个对象
+  const json1 = JSON.stringify(selectedItem.link);
+  const json2 = JSON.stringify(currentItem.link);
+  // console.log('isSelected', json1 === json2, json1, json2);
+  return json1 === json2;
+}
+
 </script>
