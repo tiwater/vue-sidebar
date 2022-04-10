@@ -11,9 +11,11 @@
       <Menu :data="selectedItem" class="menu w-full h-full rounded-md shadow-sm bg-white" />
     </div>
     <!-- 鼠标滑过带二级菜单的图标时显示悬浮菜单 -->
-    <HoverPanel v-if="hoveredItem" ref="hoverPanel" class="fixed z-49 left-12 w-68 h-full p-3">
-      <Menu v-if="hoveredItem.children" :data="hoveredItem" class="menu w-full h-full rounded-md shadow-sm bg-white" />
-    </HoverPanel>
+    <Transition name="slide-fade" appear>
+      <HoverPanel v-if="hoveredItem && hoveredItem.children" ref="hoverPanel" class="fixed z-49 left-12 w-68 h-full p-3">
+        <Menu :data="hoveredItem" class="menu w-full h-full rounded-md shadow-sm bg-white" />
+      </HoverPanel>
+    </Transition>
   </div>
   <!-- 窄屏下只显示一个悬浮按钮 -->
   <FloatButton :data="data" position="left" class="sm:hidden" />
@@ -81,18 +83,38 @@ const hoverItem = (item: ISidebarItem) => {
     hoverPanel.value.onMouseEnter();
   }
 };
-const leaveItem = (item: ISidebarItem) => {
-  if (item !== hoveredItem.value) {
-    // console.warn('Checking hoveredItem equity faild', item, hoveredItem.value);
-  }
+const leaveItem = () => {
   if (hoverPanel.value) {
     hoverPanel.value.onMouseLeave();
   }
+  // 注意：
+  // 因为 HoverPanel 可能持续存在，此处不应立即清理 hoveredItem ，交由 leavePanel 处理。
 };
+
+const leavePanel = () => {
+  hoveredItem.value = undefined;
+}
 
 // 以 provide-inject 机制交由 <IconButton> 自行更新对应热点项
 provide('hover-item', hoverItem);
 provide('leave-item', leaveItem);
 provide('select-item', selectItem);
+provide('leave-panel', leavePanel);
 
 </script>
+<style>
+/* 动画效果：滑动 + 透明度 */
+.slide-fade-enter-active {
+  transition: all 0.4s ease-in-out; /* 慢-快-慢 的过程控制 */
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.3, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-260px);
+  opacity: 0.2;
+}
+</style>
