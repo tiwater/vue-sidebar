@@ -16,7 +16,7 @@
     </HoverPanel>
   </div>
   <!-- 窄屏下只显示一个悬浮按钮 -->
-  <FloatButton :data="data" position="left-top" class="sm:hidden" />
+  <FloatButton :data="data" position="left" class="sm:hidden" />
 </div>
 </template>
 <script lang="ts" setup>

@@ -1,7 +1,7 @@
 <template>
-<div class="w-full rounded-sm min-w-60 p-3 text-sm block hover:(cursor-pointer bg-light-200)" @click="onClicked(data)">
+<div class="w-full rounded-sm flex items-center p-3 space-x-2 text-sm block hover:(cursor-pointer bg-light-200)" @click="onClicked(data)">
   <i v-if="data.icon" :class="iconClass(data.icon)"></i>
-  {{ data.text }}
+  <div>{{ data.text }}</div>
 </div>
 </template>
 <script lang="ts" setup>

@@ -53,5 +53,6 @@ export default defineConfig({
     debugbox1: 'border-1 border-green-300 bg-green-100',
     debugbox2: 'border-1 border-blue-600',
     debugbox3: 'border-1 border-red-300',
+    shade: 'fixed bg-black bg-opacity-30 backdrop-filter backdrop-blur-12 z-1001 inset-0 h-100vh w-full ',
   },
 });
