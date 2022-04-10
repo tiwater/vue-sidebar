@@ -38,6 +38,66 @@ const data: ISidebar = {
           icon: 'cloud',
           link: { path: '/products/details' },
         },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
+        {
+          text: '产品2',
+          icon: 'cloud',
+          link: { path: '/products/details' },
+        },
       ]
     },
     {

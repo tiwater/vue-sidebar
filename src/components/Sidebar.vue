@@ -12,8 +12,8 @@
     </div>
     <!-- 鼠标滑过带二级菜单的图标时显示悬浮菜单 -->
     <Transition name="slide-fade" appear>
-      <HoverPanel v-if="hoveredItem && hoveredItem.children" ref="hoverPanel" class="fixed z-49 left-12 w-68 h-full p-3">
-        <Menu :data="hoveredItem" class="menu w-full h-full rounded-md shadow-sm bg-white" />
+      <HoverPanel v-if="hoveredItem && needShowPanel()" ref="hoverPanel" class="fixed z-49 left-12 w-68 h-full p-3">
+        <Menu :data="hoveredItem" class="menu w-full h-full rounded-md shadow-sm overflow-y-auto bg-white" />
       </HoverPanel>
     </Transition>
   </div>
@@ -77,6 +77,20 @@ const hoverPanel = ref<typeof HoverPanel>(); // HoverPanel 组件引用
 
 // 悬停项
 const hoveredItem = ref<ISidebarItem>();
+
+// 检查是否满足展示悬浮区块的条款
+const needShowPanel = () => {
+  if (!hoveredItem.value || !hoveredItem.value.children) {
+    return false;
+  }
+  // 位于当前已选中且展开二级菜单的图标上时不需要展示悬浮区块
+  if (isExpanded.value && selectedItem.value &&
+      hoveredItem.value.link === selectedItem.value.link) {
+    return false;
+  }
+  return true;
+}
+
 const hoverItem = (item: ISidebarItem) => {
   hoveredItem.value = item;
   if (hoverPanel.value) {
