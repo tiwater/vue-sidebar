@@ -1,13 +1,13 @@
 <template>
 <div class="sidebar">
   <!-- 宽屏正常显示 -->
-  <div class="w-full flex flex-row justify-between <sm:hidden" :class="widthClass">
+  <div class="w-full flex flex-row justify-between <sm:hidden">
     <div class="iconbar flex flex-col min-h-100vh">
       <ToggleButton :expanded="isExpanded" :toggle="toggle" />
       <Iconbar :data="data" :selected-item="selectedItem" />
     </div>
     <!-- 展示二级菜单的条件： 1）展开状态；2）有选中项；3）选中项带二级菜单项；-->
-    <div v-if="isExpanded && selectedItem && selectedItem.children" class="w-full bg-light-400 p-3">
+    <div v-if="isExpanded && selectedItem && selectedItem.children" class="w-68 bg-light-400 p-3">
       <Menu :data="selectedItem" class="menu w-full h-full rounded-md shadow-sm bg-white" />
     </div>
     <!-- 鼠标滑过带二级菜单的图标时显示悬浮菜单 -->
@@ -58,7 +58,6 @@ defineProps<IProps>();
 const store = useStore();
 // 是否展开，状态存储在 Vuex 中
 const isExpanded = computed(() => store.state.isSidebarExpanded);
-const widthClass = computed(() => isExpanded.value ? 'w-80' : '');
 
 // 切换收缩
 const toggle = () => store.commit('toggleSidebar');
