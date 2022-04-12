@@ -4,5 +4,19 @@ class Keys {
   static sidebarStatus = 'xside-sidebar-status';
 }
 
-export const getSidebar = () => Cookies.get(Keys.sidebarStatus);
-export const setSidebar = (status: string) => Cookies.set(Keys.sidebarStatus, status);
+enum SidebarStatus {
+  Expanded = 'expanded',
+  Collapsed = 'collapsed'
+}
+
+export const loadSidebarStatus = (): boolean => {
+  const status = Cookies.get(Keys.sidebarStatus);
+  return !!status && status === SidebarStatus.Expanded;
+};
+
+export const saveSidebarStatus = (expanded: boolean) => {
+  Cookies.set(
+    Keys.sidebarStatus, 
+    expanded ? SidebarStatus.Expanded : SidebarStatus.Collapsed
+  );
+};

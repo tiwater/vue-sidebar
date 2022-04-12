@@ -31,8 +31,8 @@
 
 借鉴 VuePress 的数据驱动界面的设计模式，以尽可能减少依赖为原则最大化代码的普适性。
 
-* 组件实现： ./src/components/Sidebar.vue
-* 示例代码： ./src/views/HomeView.vue
+* 组件实现： [./src/components/Sidebar.vue](./src/components/Sidebar.vue)
+* 示例代码： [./src/views/HomeView.vue](./src/views/HomeView.vue)
 
 ## 项目构建和启动
 
