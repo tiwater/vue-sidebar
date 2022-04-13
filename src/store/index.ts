@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { loadSidebarStatus, saveSidebarStatus } from '@/utils/cookies';
+import { loadSidebarStatus, saveSidebarStatus } from '@/utils/persistence';
 
 export default createStore({
   state: {
